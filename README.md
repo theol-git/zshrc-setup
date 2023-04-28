@@ -8,35 +8,17 @@ The script installs Zsh, along with several useful plugins and command-line tool
 
 To use this setup, follow these steps:
 
-1. Clone this repository to your home directory and navigate to the repository:
+```bash
+cd ~
+git clone https://github.com/theol-git/zshrc-setup.git .zshrc-repo
+cd .zshrc-repo
+chmod +x setup.sh
+# install Zsh, plugins and command-line tools then configure the shell environment.
+./setup.sh
+source ~/.zshrc
+```
 
-   ```bash
-   cd ~
-   git clone https://github.com/theol-git/zshrc-setup.git .zshrc-repo
-   cd .zshrc-repo
-   ```
-
-2. Make the `setup.sh` script executable:
-
-   ```bash
-   chmod +x setup.sh
-   ```
-
-3. Run the `setup.sh` script:
-
-   ```bash
-   ./setup.sh
-   ```
-
-   This will install Zsh and the necessary plugins and command-line tools, and configure the shell environment.
-
-4. Reload your shell:
-
-   ```bash
-   source ~/.zshrc
-   ```
-
-   This will apply the new configuration and make the changes take effect in your current shell session.
+This will apply the new configuration and make the changes take effect in your current shell session.
 
 ## Customization
 

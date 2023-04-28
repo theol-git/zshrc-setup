@@ -1,24 +1,25 @@
 #!/bin/bash
 
 # Update package list and upgrade existing packages
-sudo apt update && sudo apt upgrade -y
+sudo apt update && sudo apt upgrade -y && sudo apt install build-essential subversion -y
+
 
 # Install zsh, bat, exa, zoxide, fzf
 sudo apt install zsh bat exa zoxide fzf -y
 
-# Check if cargo is installed, if not install it
-if ! command -v cargo &> /dev/null
-then
-    echo "cargo not found, installing..."
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    # Add cargo to PATH
-    export PATH="$HOME/.cargo/bin:$PATH"
-fi
 
 # Ask user if they want to install tealdeer
 read -p "Do you want to install tealdeer (tldr)? (y/n): " choice
 case "$choice" in
   y|Y ) 
+    # Check if cargo is installed, if not install it
+    if ! command -v cargo &> /dev/null
+    then
+        echo "cargo not found, installing..."
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        # Add cargo to PATH
+        export PATH="$HOME/.cargo/bin:$PATH"
+    fi
     # Install tealdeer with cargo
     echo "Installing tealdeer..."
     cargo install tealdeer
@@ -38,13 +39,6 @@ case "$choice" in
 
     # Install pyenv
     curl https://pyenv.run | bash
-
-    # Add pyenv to PATH
-    export PATH="$HOME/.pyenv/bin:$PATH"
-
-    # Install pyenv plugin for Zsh
-    zinit wait"!0" lucid svn for OMZ::plugins/pyenv
-    zinit light "chrissicool/zsh-256color"
   ;;
   n|N ) ;;
   * ) echo "Invalid choice, skipping pyenv installation.";;
@@ -56,6 +50,13 @@ if [ ! -f ~/.local/bin/bat ] && [ -f /usr/bin/batcat ]; then
     mkdir -p ~/.local/bin
     ln -s /usr/bin/batcat ~/.local/bin/bat
 fi
+
+# Create a symbolic link to .zshrc in the home directory
+ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
+
+# Prompt user to install a font compatible with Powerlevel10k
+read -p "Before continuing, please install a font compatible with Powerlevel10k, I enjoy the jetbrains-mono font from this repo: https://github.com/ryanoasis/nerd-fonts. Press Enter to continue."
+
 
 # Reminder to reload the shell
 echo "Installation complete! Please reload your shell to start using zsh."
