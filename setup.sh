@@ -8,7 +8,7 @@ sudo apt update && sudo apt upgrade -y && sudo apt install build-essential subve
 sudo apt install zsh bat exa zoxide fzf -y
 
 # Set zsh as the default shell
-chsh -s $(which zsh)
+sudo chsh -s $(which zsh)
 
 # Ask user if they want to install tealdeer
 read -p "Do you want to install tealdeer (tldr)? (y/n): " choice
