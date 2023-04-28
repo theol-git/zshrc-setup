@@ -47,8 +47,7 @@ esac
 # Create a symlink for bat, if necessary
 if [ ! -f ~/.local/bin/bat ] && [ -f /usr/bin/batcat ]; then
     echo "Creating symlink for bat..."
-    mkdir -p ~/.local/bin
-    ln -s /usr/bin/batcat ~/.local/bin/bat
+    sudo ln -s /usr/bin/batcat /usr/local/bin/bat
 fi
 
 # Create a symbolic link to .zshrc in the home directory
