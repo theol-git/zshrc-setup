@@ -25,6 +25,7 @@ case "$choice" in
     # Install tealdeer with cargo
     echo "Installing tealdeer..."
     cargo install tealdeer
+    tldr --update
     ;;
   n|N ) ;;
   * ) echo "Invalid choice, skipping tealdeer installation.";;
