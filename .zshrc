@@ -65,6 +65,7 @@ eval "$(zoxide init zsh)"
 alias cat='bat'
 alias ls='exa'
 alias la='exa -la'
+alias cd='z'
 
 # allow for prefix history search
 bindkey "^[[A" history-beginning-search-backward
