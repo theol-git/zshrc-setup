@@ -67,6 +67,11 @@ alias ls='exa'
 alias la='exa -la'
 alias cd='z'
 
+if [ -n "$KITTY_WINDOW_ID" ]; then
+    alias ssh="kitty +kitten ssh"
+fi
+
+
 # allow for prefix history search
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
