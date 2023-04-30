@@ -53,6 +53,16 @@ if [ ! -f ~/.local/bin/bat ] && [ -f /usr/bin/batcat ]; then
     sudo ln -s /usr/bin/batcat /usr/local/bin/bat
 fi
 
+# Check if .zshrc already exists and create a backup if it does
+if [ -f "$HOME/.zshrc" ]; then
+    # Create a backup directory if it doesn't exist
+    mkdir -p "$HOME/.zshrc_backups"
+
+    # Create a backup with date/time in the file name
+    cp "$HOME/.zshrc" "$HOME/.zshrc_backups/.zshrc.backup.$(date +"%Y%m%d-%H%M%S")"
+fi
+
+
 # Create a symbolic link to .zshrc in the home directory
 ln -sf "$PWD/.zshrc" "$HOME/.zshrc"
 
