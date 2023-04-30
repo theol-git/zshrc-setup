@@ -64,7 +64,7 @@ eval "$(zoxide init zsh)"
 # aliases
 alias cat='bat'
 alias ls='exa'
-alias la='exa -la'
+alias la='exa --long --all --group'
 alias cd='z'
 
 if [ -n "$KITTY_WINDOW_ID" ]; then
