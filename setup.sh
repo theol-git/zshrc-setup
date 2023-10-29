@@ -4,8 +4,17 @@
 sudo apt update && sudo apt upgrade -y && sudo apt install build-essential subversion -y
 
 
-# Install zsh, bat, exa, zoxide, fzf
-sudo apt install zsh bat exa zoxide fzf -y
+# Install zsh, bat, zoxide, fzf
+sudo apt install zsh bat zoxide fzf -y
+
+# Install eza
+sudo apt install -y gpg
+sudo mkdir -p /etc/apt/keyrings
+wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+sudo apt update
+sudo apt install -y eza
 
 # Set zsh as the default shell
 sudo chsh -s $(which zsh) $USER
